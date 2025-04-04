@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "craftmine-fixes",
+  "version": "${version}",
+  "name": "craftmine-fixes",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/craftmine_fix_death/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.github.zly2006.craftmine_fix_death.client.Craftmine_fix_deathClient"
+    ],
+    "main": [
+      "com.github.zly2006.craftmine_fix_death.Craftmine_fix_death"
+    ]
+  },
+  "mixins": [
+    "craftmine_fix_death.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.21.6-alpha.25.14.craftmine"
+  }
+}
