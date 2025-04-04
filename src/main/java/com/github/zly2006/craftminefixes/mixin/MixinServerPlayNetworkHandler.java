@@ -49,7 +49,6 @@ public class MixinServerPlayNetworkHandler {
                 player,
                 alive,
                 removalReason,
-
                 Optional.of(
                         new TeleportTransition(this.player.serverLevel(), playerPos, Vec3.ZERO, this.player.getXRot(), this.player.getYRot(), TeleportTransition.DO_NOTHING)
                 )
