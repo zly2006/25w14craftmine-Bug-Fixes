@@ -7,14 +7,11 @@
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/craftmine_fix_death/icon.png",
+  "icon": "assets/craftminefixes/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "com.github.zly2006.craftmine_fix_death.client.Craftmine_fix_deathClient"
-    ],
     "main": [
-      "com.github.zly2006.craftmine_fix_death.Craftmine_fix_death"
+      "com.github.zly2006.craftminefixes.CraftmineFixes"
     ]
   },
   "mixins": [
