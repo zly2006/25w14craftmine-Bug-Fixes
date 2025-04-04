@@ -12,6 +12,9 @@
   "entrypoints": {
     "main": [
       "com.github.zly2006.craftminefixes.CraftmineFixes"
+    ],
+    "preLaunch": [
+      "com.github.zly2006.craftminefixes.PreLaunch"
     ]
   },
   "mixins": [
