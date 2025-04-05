@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "MixinPets",
+    "MixinServerLevel",
+    "MixinServerPlayer",
     "MixinServerPlayerEntity",
     "MixinServerPlayNetworkHandler",
     "MixinWorldEffects"

@@ -7,6 +7,7 @@ Critical Bugs:
 
 - Fixed "Soul Link" causes StackOverflowError crashing.
 - Fixed "Dry Land" Mine Ingredient obtaining. (Thanks to Le-Petit-C)
+- "One HP" is not reset when you respawn in hub.
 
 Game Experience:
 
