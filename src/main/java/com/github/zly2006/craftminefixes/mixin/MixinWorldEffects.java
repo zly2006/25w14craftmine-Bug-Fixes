@@ -22,7 +22,7 @@ public class MixinWorldEffects {
     private static void fixStackOverflow(ServerLevel serverLevel, ServerPlayer serverPlayer, ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
         if (itemStack.is(Items.LAVA_BUCKET)) {
             Holder<Biome> biome = serverLevel.getBiome(serverPlayer.blockPosition());
-            if (biome.unwrapKey().get().registry().toString().contains("badland")) {
+            if (biome.unwrapKey().get().location().toString().contains("badland")) {
                 cir.setReturnValue(true);
             }
         }
