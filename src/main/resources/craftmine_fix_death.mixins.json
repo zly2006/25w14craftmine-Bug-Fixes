@@ -4,8 +4,10 @@
   "package": "com.github.zly2006.craftminefixes.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "MixinPets",
     "MixinServerPlayerEntity",
-    "MixinServerPlayNetworkHandler"
+    "MixinServerPlayNetworkHandler",
+    "MixinWorldEffects"
   ],
   "client": [
   ],
