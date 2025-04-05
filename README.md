@@ -1,6 +1,7 @@
 # CraftMine Bug Fixes
 
 https://modrinth.com/mod/craftmine-fixes
+下载链接：https://pan.quark.cn/s/5fac8a1752a6
 
 Critical Bugs:
 
