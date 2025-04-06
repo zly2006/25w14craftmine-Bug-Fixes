@@ -17,5 +17,10 @@ Critical Bugs:
 Game Experience:
 
 - When you fell out of the world, you will respawn at the world bottom, instead of the original position.
-- Pets wont attack other players in "Universal Anger".
+- Fixed pets can attack other players in "Universal Anger".
+- Fixed an action bat text is not shown in Warden Fight.
+
+Others:
+
+- Fixed [a bug in world effect builder](https://github.com/zly2006/25w14craftmine-Bug-Fixes/issues/4), This bug only effects modded versions.
 
