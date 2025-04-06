@@ -6,13 +6,12 @@
   "mixins": [
     "MixinDimensionGenerator",
     "MixinPets",
-    "MixinRegistryHolder",
     "MixinServer",
     "MixinServerLevel",
-    "MixinServerPlayer",
     "MixinServerPlayerEntity",
     "MixinServerPlayNetworkHandler",
-    "MixinWorldEffects"
+    "MixinWorldEffectBuilder",
+    "myfix.MixinMineCraftingMenu"
   ],
   "client": [
   ],

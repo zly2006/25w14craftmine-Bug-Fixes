@@ -14,6 +14,5 @@ public class MixinServer {
             at = @At("HEAD")
     )
     private void initGame(CallbackInfo ci) {
-        CraftmineFixes.server = (MinecraftServer) (Object) this;
     }
 }
