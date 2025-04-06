@@ -4,13 +4,13 @@
   "package": "com.github.zly2006.craftminefixes.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "MixinDimensionGenerator",
-    "MixinPets",
-    "MixinServer",
-    "MixinServerLevel",
-    "MixinServerPlayerEntity",
-    "MixinServerPlayNetworkHandler",
-    "MixinWorldEffectBuilder",
+    "critical.MixinDimensionGenerator",
+    "critical.MixinPets",
+    "minor.MixinServerLevel",
+    "fatal.MixinServerPlayerEntity",
+    "minor.MixinServerPlayNetworkHandler",
+    "minor.MixinWorldEffectBuilder",
+    "minor.MixinWarden",
     "myfix.MixinMineCraftingMenu"
   ],
   "client": [

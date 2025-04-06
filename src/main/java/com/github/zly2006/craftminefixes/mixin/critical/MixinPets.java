@@ -1,4 +1,4 @@
-package com.github.zly2006.craftminefixes.mixin;
+package com.github.zly2006.craftminefixes.mixin.critical;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.NeutralMob;

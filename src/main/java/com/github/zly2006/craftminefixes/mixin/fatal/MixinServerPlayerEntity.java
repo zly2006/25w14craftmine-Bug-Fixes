@@ -1,4 +1,4 @@
-package com.github.zly2006.craftminefixes.mixin;
+package com.github.zly2006.craftminefixes.mixin.fatal;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;

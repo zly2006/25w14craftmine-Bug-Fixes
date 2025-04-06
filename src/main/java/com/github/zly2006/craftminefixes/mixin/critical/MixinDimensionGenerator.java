@@ -1,14 +1,12 @@
-package com.github.zly2006.craftminefixes.mixin;
+package com.github.zly2006.craftminefixes.mixin.critical;
 
 import com.github.zly2006.craftminefixes.CraftmineFixes;
 import com.github.zly2006.craftminefixes.data.BiomeTagsProvider;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.TheGame;
 import net.minecraft.server.level.DimensionGenerator;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.mines.SpecialMine;
 import net.minecraft.world.level.mines.WorldEffect;
 import net.minecraft.world.level.mines.WorldGenBuilder;
@@ -27,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Mixin(DimensionGenerator.class)
 public class MixinDimensionGenerator {

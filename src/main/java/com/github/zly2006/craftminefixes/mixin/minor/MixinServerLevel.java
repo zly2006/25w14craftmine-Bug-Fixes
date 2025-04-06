@@ -1,4 +1,4 @@
-package com.github.zly2006.craftminefixes.mixin;
+package com.github.zly2006.craftminefixes.mixin.minor;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
