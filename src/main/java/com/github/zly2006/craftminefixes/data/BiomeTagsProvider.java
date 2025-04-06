@@ -58,6 +58,13 @@ public class BiomeTagsProvider {
             return this;
         }
 
+        public TagAppender add(ResourceLocation resourceLocation) {
+            if (modifiedBiomes.contains(resourceLocation)) {
+                this.values.add(resourceLocation.toString());
+            }
+            return this;
+        }
+
         void write() {
             Path path = root.resolve("data")
                     .resolve(location.getNamespace())
@@ -243,7 +250,7 @@ public class BiomeTagsProvider {
                 .add(BiomesGet("lush_caves"));
         this.tag(BiomeTags.HAS_STRONGHOLD).addTag(BiomeTags.IS_OVERWORLD);
         var tagAppender3 = this.tag(BiomeTags.HAS_TRIAL_CHAMBERS);
-        MultiNoiseBiomeSourceParameterList.Preset.OVERWORLD.usedBiomes().filter(Predicate.not(BiomesGet("deep_dark")::equals)).forEach(tagAppender3::add);
+        modifiedBiomes.forEach(tagAppender3::add);
         this.tag(BiomeTags.HAS_NETHER_FORTRESS).addTag(BiomeTags.IS_NETHER);
         this.tag(BiomeTags.HAS_NETHER_FOSSIL).add(BiomesGet("soul_sand_valley"));
         this.tag(BiomeTags.HAS_BASTION_REMNANT).add(BiomesGet("crimson_forest")).add(BiomesGet("nether_wastes")).add(BiomesGet("soul_sand_valley")).add(BiomesGet("warped_forest"));
