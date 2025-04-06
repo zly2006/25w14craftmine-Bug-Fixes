@@ -5,8 +5,9 @@ https://modrinth.com/mod/craftmine-fixes
 
 Critical Bugs:
 
+- Fixed all registry tag bugs in mine dimensions.
 - Fixed "Soul Link" causes StackOverflowError crashing.
-- Fixed "Dry Land" Mine Ingredient obtaining. (Thanks to Le-Petit-C)
+- Fixed "Dry Land" Mine Ingredient obtaining.
 - "One HP" is not reset when you respawn in hub.
 
 Game Experience:

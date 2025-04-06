@@ -4,7 +4,10 @@
   "package": "com.github.zly2006.craftminefixes.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "MixinDimensionGenerator",
     "MixinPets",
+    "MixinRegistryHolder",
+    "MixinServer",
     "MixinServerLevel",
     "MixinServerPlayer",
     "MixinServerPlayerEntity",
