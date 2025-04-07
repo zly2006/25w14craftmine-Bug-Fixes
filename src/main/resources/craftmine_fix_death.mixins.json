@@ -6,11 +6,12 @@
   "mixins": [
     "critical.MixinDimensionGenerator",
     "critical.MixinPets",
-    "minor.MixinServerLevel",
+    "critical.MixinServerLevel",
     "fatal.MixinServerPlayerEntity",
+    "minor.MixinServerLevel",
     "minor.MixinServerPlayNetworkHandler",
-    "minor.MixinWorldEffectBuilder",
     "minor.MixinWarden",
+    "minor.MixinWorldEffectBuilder",
     "myfix.MixinMineCraftingMenu"
   ],
   "client": [

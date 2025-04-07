@@ -49,7 +49,7 @@ public class MixinDimensionGenerator {
         Files.write(
                 path.resolve("com.github.zly2006.craftminefixes"),
                 String.format(
-                        "World: %s\nCount: %d\nDimension: %s\nMod Version: %s\nData: %s\nModified Biomes: %s\n",
+                        "World: %s\nCount: %d\nDimension: %s\nMod Version: %s\nDate: %s\nModified Biomes: %s\n",
                         serverLevelData.getLevelName(),
                         serverLevelData.getLevelCount(),
                         resourceLocation,
