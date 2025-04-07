@@ -7,6 +7,7 @@
     "critical.MixinDimensionGenerator",
     "critical.MixinPets",
     "critical.MixinServerLevel",
+    "fatal.MixinMineCraftingMenu",
     "fatal.MixinServerPlayerEntity",
     "minor.MixinServerLevel",
     "minor.MixinServerPlayNetworkHandler",
