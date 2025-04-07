@@ -11,8 +11,6 @@ import net.minecraft.world.level.mines.SpecialMine;
 import net.minecraft.world.level.mines.WorldEffect;
 import net.minecraft.world.level.mines.WorldGenBuilder;
 import net.minecraft.world.level.storage.ServerLevelData;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Unmodifiable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,7 +21,6 @@ import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mixin(DimensionGenerator.class)
@@ -43,9 +40,9 @@ public class MixinDimensionGenerator {
             @Local WorldGenBuilder worldGenBuilder
     ) throws IOException {
         path.resolve("data").toFile().mkdirs();
-        @NotNull @Unmodifiable Set<@NotNull ResourceLocation> modifiedBiomes = worldGenBuilder.createModifiedBiomes(
+        List<WorldGenBuilder.ModifiedBiome> modifiedBiomes = worldGenBuilder.createModifiedBiomes(
                 theGame.registryAccess().lookupOrThrow(Registries.BIOME), resourceLocation.getPath()
-        ).stream().map(x -> x.modified().location()).collect(Collectors.toUnmodifiableSet());
+        );
         Files.write(
                 path.resolve("com.github.zly2006.craftminefixes"),
                 String.format(
@@ -55,11 +52,13 @@ public class MixinDimensionGenerator {
                         resourceLocation,
                         CraftmineFixes.MOD_VERSION,
                         new Date(),
-                        modifiedBiomes.stream().map(ResourceLocation::toString).collect(Collectors.joining(", "))
+                        modifiedBiomes.stream()
+                                .map(modifiedBiome -> modifiedBiome.modified().location().toString())
+                                .collect(Collectors.joining(", "))
                 ).getBytes()
         );
         BiomeTagsProvider provider = new BiomeTagsProvider(path, modifiedBiomes);
         provider.prefix = resourceLocation.getPath();
-        provider.run();
+        provider.run(theGame);
     }
 }

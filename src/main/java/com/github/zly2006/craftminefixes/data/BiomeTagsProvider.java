@@ -1,42 +1,46 @@
 package com.github.zly2006.craftminefixes.data;
 
-
 import com.google.gson.FormattingStyle;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.TheGame;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.mines.WorldGenBuilder;
 import org.jetbrains.annotations.Unmodifiable;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BiomeTagsProvider {
     private final Gson gson = new GsonBuilder().setFormattingStyle(FormattingStyle.PRETTY).create();
     private final Path root;
-    private final @Unmodifiable Set<ResourceLocation> modifiedBiomes;
+    private final @Unmodifiable List<WorldGenBuilder.ModifiedBiome> modifiedBiomes;
+    private final @Unmodifiable Set<ResourceLocation> modifiedLocations;
     public String prefix;
 
-    public BiomeTagsProvider(Path root, @NotNull @Unmodifiable Set<@NotNull ResourceLocation> modifiedBiomes) {
+    public BiomeTagsProvider(Path root, List<WorldGenBuilder.ModifiedBiome> modifiedBiomes) {
         this.root = root;
         this.modifiedBiomes = modifiedBiomes;
+        this.modifiedLocations = modifiedBiomes.stream()
+                .map(WorldGenBuilder.ModifiedBiome::modified)
+                .map(ResourceKey::location)
+                .collect(Collectors.toSet());
     }
 
     List<TagAppender> tagAppenders = new ArrayList<>();
 
-    record Data(List<String> values) { }
+    record Data(List<String> values) {
+    }
 
     class TagAppender {
         ResourceLocation location;
@@ -48,24 +52,26 @@ public class BiomeTagsProvider {
         List<String> values = new ArrayList<>();
 
         public TagAppender addTag(TagKey<Biome> biomeTags) {
+            // all tags are the original ones, no need to add them
             return this;
         }
 
         public TagAppender add(ResourceKey<Biome> biome) {
-            if (modifiedBiomes.contains(biome.location())) {
+            if (modifiedLocations.contains(biome.location())) {
                 this.values.add(biome.location().toString());
             }
             return this;
         }
 
         public TagAppender add(ResourceLocation resourceLocation) {
-            if (modifiedBiomes.contains(resourceLocation)) {
+            if (modifiedLocations.contains(resourceLocation)) {
                 this.values.add(resourceLocation.toString());
             }
             return this;
         }
 
         void write() {
+            if (values.isEmpty()) return;
             Path path = root.resolve("data")
                     .resolve(location.getNamespace())
                     .resolve("tags")
@@ -88,7 +94,7 @@ public class BiomeTagsProvider {
         return tagAppender;
     }
 
-    protected void addTags() {
+    protected void addTags(TheGame theGame) {
         this.tag(BiomeTags.IS_DEEP_OCEAN).add(BiomesGet("deep_frozen_ocean")).add(BiomesGet("deep_cold_ocean")).add(BiomesGet("deep_ocean")).add(BiomesGet("deep_lukewarm_ocean"));
         this.tag(BiomeTags.IS_OCEAN)
                 .addTag(BiomeTags.IS_DEEP_OCEAN)
@@ -120,9 +126,15 @@ public class BiomeTagsProvider {
                 .add(BiomesGet("grove"));
         this.tag(BiomeTags.IS_SAVANNA).add(BiomesGet("savanna")).add(BiomesGet("savanna_plateau")).add(BiomesGet("windswept_savanna"));
         var tagAppender = this.tag(BiomeTags.IS_NETHER);
-        MultiNoiseBiomeSourceParameterList.Preset.NETHER.usedBiomes().forEach(tagAppender::add);
+        modifiedBiomes.stream()
+                .filter(x -> theGame.registryAccess().get(x.original()).map(y -> y.is(BiomeTags.IS_NETHER)).orElse(false))
+                .map(WorldGenBuilder.ModifiedBiome::modified)
+                .forEach(tagAppender::add);
         var tagAppender2 = this.tag(BiomeTags.IS_OVERWORLD);
-        MultiNoiseBiomeSourceParameterList.Preset.OVERWORLD.usedBiomes().forEach(tagAppender2::add);
+        modifiedBiomes.stream()
+                .filter(x -> theGame.registryAccess().get(x.original()).map(y -> y.is(BiomeTags.IS_OVERWORLD)).orElse(false))
+                .map(WorldGenBuilder.ModifiedBiome::modified)
+                .forEach(tagAppender2::add);
         this.tag(BiomeTags.IS_END).add(BiomesGet("the_end")).add(BiomesGet("end_highlands")).add(BiomesGet("end_midlands")).add(BiomesGet("small_end_islands")).add(BiomesGet("end_barrens"));
         this.tag(BiomeTags.HAS_BURIED_TREASURE).addTag(BiomeTags.IS_BEACH);
         this.tag(BiomeTags.HAS_DESERT_PYRAMID).add(BiomesGet("desert"));
@@ -250,7 +262,9 @@ public class BiomeTagsProvider {
                 .add(BiomesGet("lush_caves"));
         this.tag(BiomeTags.HAS_STRONGHOLD).addTag(BiomeTags.IS_OVERWORLD);
         var tagAppender3 = this.tag(BiomeTags.HAS_TRIAL_CHAMBERS);
-        modifiedBiomes.stream().filter(x -> !x.getPath().contains("deep_dark"))
+        modifiedBiomes.stream()
+                .filter(x -> x.original() != Biomes.DEEP_DARK)
+                .map(WorldGenBuilder.ModifiedBiome::modified)
                 .forEach(tagAppender3::add);
         this.tag(BiomeTags.HAS_NETHER_FORTRESS).addTag(BiomeTags.IS_NETHER);
         this.tag(BiomeTags.HAS_NETHER_FOSSIL).add(BiomesGet("soul_sand_valley"));
@@ -376,9 +390,9 @@ public class BiomeTagsProvider {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace(prefix + "/" + key));
     }
 
-    public void run() {
+    public void run(TheGame theGame) {
         tagAppenders.clear();
-        addTags();
+        addTags(theGame);
         tagAppenders.forEach(TagAppender::write);
     }
 }
