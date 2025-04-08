@@ -9,6 +9,7 @@
     "critical.MixinServerLevel",
     "fatal.MixinMineCraftingMenu",
     "fatal.MixinServerPlayerEntity",
+    "minor.MixinResultSlot",
     "minor.MixinServerLevel",
     "minor.MixinServerPlayNetworkHandler",
     "minor.MixinWarden",

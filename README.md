@@ -17,6 +17,7 @@ Critical Bugs:
 
 Game Experience:
 
+- Fixed "Artisan Crafting" output item is not shown in the crafting table.
 - When you fell out of the world, you will respawn at the world bottom, instead of the original position.
 - Fixed pets can attack other players in "Universal Anger".
 - Fixed an action bat text is not shown in Warden Fight.
