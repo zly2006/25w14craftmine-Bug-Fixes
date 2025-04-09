@@ -6,6 +6,7 @@
   "mixins": [
     "critical.MixinDimensionGenerator",
     "critical.MixinPets",
+    "critical.MixinPlayerUnlocks",
     "critical.MixinServerLevel",
     "fatal.MixinMineCraftingMenu",
     "fatal.MixinServerPlayerEntity",

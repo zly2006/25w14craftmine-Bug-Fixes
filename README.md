@@ -15,6 +15,7 @@ Critical Bugs:
 - Fixed "The Ultimate Miner" cannot be obtained.
 - Fixed "Dry Land" Mine Ingredient obtaining.
 - "One HP" is not reset when you respawn in hub.
+- Fixed "Dragon Fire" cannot be obtained.
 
 Game Experience:
 
