@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -33,22 +34,24 @@ public class MixinServerLevel {
 
             @Override
             public ItemStack next() {
-                if (currentIterator != rootIterator && currentIterator.hasNext()) {
-                    return currentIterator.next();
-                } else {
-                    currentIterator = rootIterator;
-                    if (rootIterator.hasNext()) {
-                        ItemStack itemStack = rootIterator.next();
-                        Iterator<ItemStack> iterator = getIterator(itemStack);
-                        if (iterator != null && iterator.hasNext()) {
-                            currentIterator = iterator;
-                            return currentIterator.next();
-                        } else {
-                            return itemStack;
-                        }
-                    } else {
-                        throw new NoSuchElementException("Already reached the end of the iterator");
+                if (currentIterator != rootIterator) {
+                    if (currentIterator.hasNext()) {
+                        return currentIterator.next();
+                    } else if (rootIterator.hasNext()) {
+                        currentIterator = rootIterator;
                     }
+                }
+                if (rootIterator.hasNext()) {
+                    ItemStack itemStack = rootIterator.next();
+                    Iterator<ItemStack> iterator = getIterator(itemStack);
+                    if (iterator != null && iterator.hasNext()) {
+                        currentIterator = iterator;
+                        return currentIterator.next();
+                    } else {
+                        return itemStack;
+                    }
+                } else {
+                    throw new NoSuchElementException("Already reached the end of the iterator");
                 }
             }
 
