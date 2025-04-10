@@ -5,6 +5,9 @@
 https://modrinth.com/mod/craftmine-fixes
 下载链接：https://pan.quark.cn/s/5fac8a1752a6
 
+> [!IMPORTANT]
+> Prism Launcher is not compatible with this mod, because of a bug of their fabric remapping handling, use another launcher.
+
 Critical Bugs:
 
 - Fixed "Soul Link" causes StackOverflowError **crashing**.
