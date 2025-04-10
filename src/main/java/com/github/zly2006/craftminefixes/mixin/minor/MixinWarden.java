@@ -13,12 +13,12 @@ public class MixinWarden {
             method = "tick",
             at = @At(
                     value = "FIELD",
-                    target = "Lnet/minecraft/world/entity/monster/warden/Warden;timeUntilRockets:I",
-                    ordinal = 0,
-                    opcode = Opcodes.GETFIELD
+                    target = "Lnet/minecraft/world/entity/monster/warden/Warden;timeUntilMobHead:I",
+                    ordinal = 1,
+                    opcode = Opcodes.PUTFIELD
             )
     )
-    private int fix(Warden instance, Operation<Integer> original) {
-        return instance.timeUntilMobHead;
+    private void fix(Warden instance, int value, Operation<Void> original) {
+        instance.timeUntilRockets = value;
     }
 }
