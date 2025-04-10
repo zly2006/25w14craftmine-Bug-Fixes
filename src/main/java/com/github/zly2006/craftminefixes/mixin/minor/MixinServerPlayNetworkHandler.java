@@ -16,7 +16,8 @@ import java.util.Optional;
 
 @Mixin(ServerGamePacketListenerImpl.class)
 public class MixinServerPlayNetworkHandler {
-    @Shadow public ServerPlayer player;
+    @Shadow
+    public ServerPlayer player;
 
     @SuppressWarnings("resource")
     @WrapOperation(
@@ -50,7 +51,7 @@ public class MixinServerPlayNetworkHandler {
                 alive,
                 removalReason,
                 Optional.of(
-                        new TeleportTransition(this.player.serverLevel(), playerPos, Vec3.ZERO, this.player.getXRot(), this.player.getYRot(), TeleportTransition.DO_NOTHING)
+                        new TeleportTransition(this.player.serverLevel(), playerPos, Vec3.ZERO, this.player.getYRot(), this.player.getXRot(), TeleportTransition.DO_NOTHING)
                 )
         );
     }
