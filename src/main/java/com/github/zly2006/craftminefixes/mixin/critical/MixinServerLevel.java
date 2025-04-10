@@ -29,7 +29,7 @@ public class MixinServerLevel {
 
             @Override
             public boolean hasNext() {
-                return rootIterator.hasNext() && currentIterator.hasNext();
+                return rootIterator.hasNext() || currentIterator.hasNext();
             }
 
             @Override
