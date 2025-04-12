@@ -7,9 +7,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.ItemContainerContents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -59,6 +59,10 @@ public class MixinServerLevel {
                 BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
                 if (bundleContents != null) {
                     return bundleContents.items().iterator();
+                }
+                ItemContainerContents containerContents = stack.get(DataComponents.CONTAINER);
+                if (containerContents != null) {
+                    return containerContents.stream().iterator();
                 }
                 return null;
             }

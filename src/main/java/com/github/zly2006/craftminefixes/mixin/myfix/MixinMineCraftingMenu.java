@@ -2,7 +2,6 @@ package com.github.zly2006.craftminefixes.mixin.myfix;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.MineCraftingMenu;
 import net.minecraft.world.level.mines.WorldEffect;
@@ -32,8 +31,9 @@ public class MixinMineCraftingMenu {
         var list = new ArrayList<>(original.call(instance));
         if (serverPlayer.isPresent()) {
             if (serverPlayer.get().theGame().server().getPlayerCount() == 1) {
-                LogManager.getLogger(this.getClass()).info("Single player, disabling soul link");
-                list.remove(WorldEffects.SOUL_LINK);
+                if (list.remove(WorldEffects.SOUL_LINK)) {
+                    LogManager.getLogger(this.getClass()).info("Single player, disabling soul link");
+                }
             }
         }
         return list;

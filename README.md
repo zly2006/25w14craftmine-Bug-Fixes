@@ -14,6 +14,7 @@ Critical Bugs:
 - Fixed you can drop items in mine crafter and **freeze the game forever**.
 - Fixed **ALL** registry tag bugs in mine dimensions.
 - Fixed **ALL** structure (villages, trail chambers, etc) generation bugs in mine dimensions.
+- Fixed "Rabbits" will spawn Parrots.
 - Allow "Soul Link" to be used in local LAN.
 - Fixed "The Ultimate Miner" cannot be obtained.
 - Fixed "Dry Land" Mine Ingredient obtaining.
