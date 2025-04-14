@@ -6,7 +6,8 @@ https://modrinth.com/mod/craftmine-fixes
 下载链接：https://pan.quark.cn/s/5fac8a1752a6
 
 > [!IMPORTANT]
-> Prism Launcher is not compatible with this mod, because of a bug of their fabric remapping handling, use another launcher.
+> There are some bugs i fabric causing the game to crash in some early versions.
+> Please reinstall your minecraft instance and install the latest version of fabric if you encounter a crash.
 
 Critical Bugs:
 
@@ -24,7 +25,9 @@ Critical Bugs:
 Game Experience:
 
 - Fixed "Artisan Crafting" output item is not shown in the crafting table.
-- When you fell out of the world, you will respawn at the world bottom, instead of the original position.
+- Fixed shields are not functioning.
+- Fixed Mine Ingredients and Trophies are ignored when you back to the hub.
+- When you fall out of the world, you will respawn at the world bottom, instead of the original position.
 - Fixed pets can attack other players in "Universal Anger".
 - Fixed an action bat text is not shown in Warden Fight.
 

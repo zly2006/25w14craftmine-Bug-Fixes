@@ -14,6 +14,7 @@
     "minor.MixinResultSlot",
     "minor.MixinServerLevel",
     "minor.MixinServerPlayNetworkHandler",
+    "minor.MixinShieldItem",
     "minor.MixinWarden",
     "minor.MixinWorldEffectBuilder",
     "myfix.MixinMineCraftingMenu"
