@@ -14,7 +14,7 @@ Critical Bugs:
 - Fixed "Soul Link" causes StackOverflowError **crashing**.
 - Fixed you can drop items in mine crafter and **freeze the game forever**.
 - Fixed **ALL** registry tag bugs in mine dimensions.
-- Fixed **ALL** structure (villages, trail chambers, etc) generation bugs in mine dimensions.
+- Fixed **ALL** structure (villages, trial chambers, etc) generation bugs in mine dimensions.
 - Fixed "Rabbits" will spawn Parrots.
 - Allow "Soul Link" to be used in local LAN.
 - Fixed "The Ultimate Miner" cannot be obtained.
@@ -30,6 +30,7 @@ Game Experience:
 - When you fall out of the world, you will respawn at the world bottom, instead of the original position.
 - Fixed pets can attack other players in "Universal Anger".
 - Fixed an action bat text is not shown in Warden Fight.
+- Fixed "Wither Skeleton" world effect icon display.
 
 Others:
 

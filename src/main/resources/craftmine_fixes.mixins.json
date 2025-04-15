@@ -17,6 +17,7 @@
     "minor.MixinShieldItem",
     "minor.MixinWarden",
     "minor.MixinWorldEffectBuilder",
+    "minor.MixinWorldEffects",
     "myfix.MixinMineCraftingMenu"
   ],
   "client": [
