@@ -6,8 +6,8 @@ https://modrinth.com/mod/craftmine-fixes
 下载链接：https://pan.quark.cn/s/5fac8a1752a6
 
 > [!IMPORTANT]
-> There are some bugs i fabric causing the game to crash in some early versions.
-> Please reinstall your minecraft instance and install the latest version of fabric if you encounter a crash.
+> There are some bugs in fabric causing the game to crash in some early versions.
+> Please reinstall your minecraft instance and reinstall the latest version of fabric if you encounter a crash.
 
 Critical Bugs:
 
@@ -16,6 +16,7 @@ Critical Bugs:
 - Fixed **ALL** registry tag bugs in mine dimensions.
 - Fixed **ALL** structure (villages, trial chambers, etc) generation bugs in mine dimensions.
 - Fixed "Rabbits" will spawn Parrots.
+- Fixed an issue where you would get stuck on a completed mine if you left the game midway.
 - Allow "Soul Link" to be used in local LAN.
 - Fixed "The Ultimate Miner" cannot be obtained.
 - Fixed "Dry Land" Mine Ingredient obtaining.

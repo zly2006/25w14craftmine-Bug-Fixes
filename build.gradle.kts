@@ -10,6 +10,10 @@ base {
     archivesName = "${project.property("archives_base_name")}-${project.property("mod_version")}"
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/craftmine-fixes.accesswidener")
+}
+
 repositories {
     fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
         forRepository { maven(url) { name = alias } }

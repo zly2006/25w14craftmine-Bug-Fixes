@@ -8,6 +8,7 @@
     "critical.MixinPets",
     "critical.MixinPlayerUnlocks",
     "critical.MixinServerLevel",
+    "critical.MixinServerLevel$EntityCallbacksMixin",
     "critical.MixinWorldEffects",
     "fatal.MixinMineCraftingMenu",
     "fatal.MixinServerPlayerEntity",
