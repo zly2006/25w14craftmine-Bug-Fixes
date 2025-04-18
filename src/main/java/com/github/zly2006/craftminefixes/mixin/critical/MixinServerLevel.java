@@ -4,6 +4,7 @@ import com.github.zly2006.craftminefixes.ItemStackIterator;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +51,7 @@ public class MixinServerLevel {
 
     @Mixin(targets = "net.minecraft.server.level.ServerLevel.EntityCallbacks")
     static abstract class EntityCallbacksMixin implements LevelCallback<Entity> {
-        @Shadow(remap = false) @Final ServerLevel field_26936;
+        @Shadow @Final ServerLevel field_26936;
 
         @Inject(
                 method = "onTrackingStart(Lnet/minecraft/world/entity/Entity;)V",
@@ -59,8 +60,9 @@ public class MixinServerLevel {
                         target = "Lnet/minecraft/server/level/ServerLevel;updateSleepingPlayerList()V"
                 )
         )
-        private void onTrackingStart(CallbackInfo ci) {
-            if (field_26936.isMineCompleted()) {
+        private void onTrackingStart(Entity entity, CallbackInfo ci) {
+            ServerPlayer serverPlayer = (ServerPlayer) entity;
+            if (field_26936.isMineCompleted() && !serverPlayer.isRevisiting()) {
                 field_26936.handleCompletedMine();
             }
         }
