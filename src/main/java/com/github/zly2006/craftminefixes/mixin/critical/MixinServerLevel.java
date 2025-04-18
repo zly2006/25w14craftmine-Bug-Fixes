@@ -50,7 +50,7 @@ public class MixinServerLevel {
 
     @Mixin(targets = "net.minecraft.server.level.ServerLevel.EntityCallbacks")
     static abstract class EntityCallbacksMixin implements LevelCallback<Entity> {
-        @Shadow @Final ServerLevel field_26936;
+        @Shadow(remap = false) @Final ServerLevel field_26936;
 
         @Inject(
                 method = "onTrackingStart(Lnet/minecraft/world/entity/Entity;)V",

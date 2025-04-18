@@ -4,6 +4,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.ItemContainerContents;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -18,7 +19,9 @@ public class ItemStackIterator implements Iterator<ItemStack> {
 
     @Override
     public boolean hasNext() {
-        return rootIterator.hasNext() || currentIterator.hasNext();
+        return currentIterator == null
+                ? rootIterator.hasNext()
+                : rootIterator.hasNext() || currentIterator.hasNext();
     }
 
     @Override
