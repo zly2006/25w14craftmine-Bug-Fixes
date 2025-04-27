@@ -4,17 +4,10 @@ import com.github.zly2006.craftminefixes.ItemStackIterator;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.entity.LevelCallback;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Iterator;
 import java.util.Spliterator;
@@ -47,24 +40,5 @@ public class MixinServerLevel {
     )
     private boolean fixRespawnConditionForLostGame(ServerLevel instance, Operation<Boolean> original) {
         return instance.isMineCompleted();
-    }
-
-    @Mixin(targets = "net.minecraft.server.level.ServerLevel.EntityCallbacks")
-    static abstract class EntityCallbacksMixin implements LevelCallback<Entity> {
-        @Shadow @Final ServerLevel field_26936;
-
-        @Inject(
-                method = "onTrackingStart(Lnet/minecraft/world/entity/Entity;)V",
-                at = @At(
-                        value = "INVOKE",
-                        target = "Lnet/minecraft/server/level/ServerLevel;updateSleepingPlayerList()V"
-                )
-        )
-        private void onTrackingStart(Entity entity, CallbackInfo ci) {
-            ServerPlayer serverPlayer = (ServerPlayer) entity;
-            if (field_26936.isMineCompleted() && !serverPlayer.isRevisiting()) {
-                field_26936.handleCompletedMine();
-            }
-        }
     }
 }
